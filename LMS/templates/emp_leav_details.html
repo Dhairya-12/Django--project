@@ -1,0 +1,122 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Employee Leave Details</title>
+  <style>
+    * {
+        box-sizing:border-box;
+      }
+    
+    body {
+        background-size: cover;
+        background-repeat:no-repeat; 
+    }
+    header {
+        background-color: #15395a;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+        
+      }
+      
+    .header {
+        background-color: #4AD489;
+        color: rgb(5, 5, 5);
+        padding: 20px;
+        text-align: center;
+        border: 3px solid rgb(35, 39, 67);
+        border-radius: 15px;
+      }
+    .table{
+        border: 3px solid rgb(35, 39, 67);
+    }
+  </style>
+</head>
+<body background="{% static 'global_bg.jpeg' %}">
+    
+  <div class="container mt-5">
+    <header><h1>Employee Leave Details</h1></header>
+    <br>
+    <form action="#">
+    <center>
+        <input type="text" id="nameIn" onkeyup="Name()" placeholder="Search for names.." name="name">
+        <button type="submit" >Go</button>
+        &nbsp;
+        &nbsp;
+        <input type="text" id="leaveIn" onkeyup="leaveType()" placeholder="Search for leavetype.." name="leave">
+        <button type="submit">Go</button>
+    </center>
+    </form>
+    <br/>
+    <table class="table table-striped" id="leaveTable">
+      <thead>
+        <tr class="header">
+          <th>Name</th>
+          <th>Leave Type</th>
+          <th>Leave Duration</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody align="center">
+        {% block content %}
+          {% for stud in Emp_Leave_applic %}
+        <tr>
+          <td>{{stud.first_name}} {{stud.last_name}}</td>
+          <td>{{stud.leave_type}}</td>
+          <td>{{stud.start_date}} -- {{stud.end_date}}</td>
+          <td>{{stud.email}}</td>
+          <td>{{stud.status}}</td>
+        </tr>
+        {% endfor %}
+        {% endblock content %}
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function Name() {
+      let input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("nameIn");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("leaveTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    
+    function leaveType() {
+      let input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("leaveIn");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("leaveTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    </script>
+    
+</body>
+</html>

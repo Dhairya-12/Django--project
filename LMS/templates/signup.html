@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Sign up page</title>
+  </head>
+<body class="p-3 mb-2 bg-secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card border-0 shadow rounded-3 my-5">
+            <div class="card-body p-4 p-sm-5">
+                <h1 class="card-title text-center mb-5 fw-light fs-5"><b><i>SIGNUP</i></b></h1>
+                <form  method="POST">
+                  {% csrf_token %}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingtext" name="first_name" placeholder="name" required autocomplete="off">
+                            <label for="floatingInput">First name</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingtext" name="last_name" placeholder="name" required autocomplete="off">
+                            <label for="floatingInput">Last name</label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingtext" name="mobile" placeholder="phone no." required autocomplete="off">
+                            <label for="floatingInput">Mobile no.</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingtext" name="emp_code" placeholder="name" required autocomplete="off">
+                            <label for="floatingInput">Employee code</label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <select id="dep" name="dep_name" class="form-control" required autocomplete="off">
+                      <option value="">Select department name</option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="Finance">Finance</option>
+                      <option value="Operations">Operations</option>
+                      <option value="Sales">Sales</option>
+                      <option value="HR">HR</option>
+                      <option value="Purchase">Purchase</option>
+                    </select>
+                    <label for="floatingPassword">Department name</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <select id="role" name="role" class="form-control" required autocomplete="off">
+                        <option value="">Select role</option>
+                        <option value="Employee">Employee</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Admin">Admin</option>
+                      </select>
+                    <label for="floatingPassword">Role</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required autocomplete="off">
+                    <label for="floatingInput">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required autocomplete="off">
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="d-grid">
+                    <button class="btn btn-primary btn-login text-uppercase fw-bold" onclick="myFunction()" type="submit">REGISTER</button>
+                    <script>
+                      function myFunction() {
+                        if(first_name!=null && last_name!=null && role!=null && password!=null)
+                        {
+                          alert("Registered Successfully");
+                        } 
+                      }
+                    </script>
+                  </div>
+                  <hr class="my-4">
+                <div class="d-grid mb-2">
+                    <p>Already Registered ?<a href="{% url 'login' %}"> Login Here </a></p>
+                </div>
+             </form>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  </body>
+</html>

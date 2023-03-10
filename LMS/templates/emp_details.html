@@ -1,0 +1,167 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing :content-box;
+          }
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-repeat:no-repeat;
+            padding-left: 0px;
+            padding-right: 0px;
+            border: 3px solid rgb(35, 39, 67);
+            weight:95%;
+          }
+          
+          header {
+            background-color: #15395a;
+            color: hsl(0, 0%, 96%);
+            padding: 20px;
+            text-align: center;
+          }
+          
+          header h1 {
+            margin: 0;
+            
+          }
+          
+          main {
+            padding: 20px;
+          }
+          
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            border: #15395a;
+          }
+          
+          th, td {
+            border: 1px solid   rgb(18, 18, 18);
+            padding: 8px;
+            text-align: left;
+          }
+          
+          th {
+            background-color: #4AD489;
+          }
+          
+          .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+          }
+          
+          form {
+            display: flex;
+          }
+          
+          input[type="text"] {
+            padding: 5px;
+            margin-right: 5px;
+            width: 70%;
+          }
+          
+          button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+          }
+          
+          footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+          }
+    </style>
+</head>
+
+<body background="{% static 'global_bg.jpeg' %}">
+<header>
+    <h1>Employee Details</h1>
+</header>
+<br/>
+<div class="search-container">
+    <form action="#">
+    <input type="text" id="nameIn" onkeyup="Name()" placeholder="Search for names.." name="name">
+    <button type="submit" >Go</button>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <input type="text" id="departIn" onkeyup="myDepartment()" placeholder="Search for department.." name="department">
+    <button type="submit">Go</button>
+    </form>
+</div>
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:auto;">Name</th>
+    <th style="width:auto;">Emp_code</th>
+    <th style="width:auto;">Mobile Number</th>
+    <th style="width:auto;">Department</th>
+    <th style="width:auto;">Role</th>
+    <th style="width:auto;">Email-Id</th>
+  </tr>
+  <tbody>
+    <tr>
+      <td>{{fn}} {{ln}}</td>
+      <td>{{empc}}</td>
+      <td>{{mob}}</td>
+      <td>{{dep}}</td>
+      <td>{{r}}</td>
+      <td>{{em}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+function Name() {
+  let input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("nameIn");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+function myDepartment() {
+  let input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("departIn");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+</form>
+
+</body>
+</html>

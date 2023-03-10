@@ -1,0 +1,474 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Employee Dashboard</title>
+    <!-- Font Awesome Cdn Link -->
+    <script src="https://kit.fontawesome.com/51a9bb7133.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  /* background: rgb(226, 226, 226); */
+  background-size: cover;
+  background-repeat:no-repeat;
+}
+nav{
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  width: 90px;
+  /* width: 280px; */
+  background: #fff;
+  overflow :hidden;
+  transition: 1s;
+  background: #c8f4cc;
+}
+nav:hover{
+  width: 280px;
+  transition: 1s;
+}
+.logo{
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+  padding-bottom: 2rem;
+}
+
+.logo img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.logo span{
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+a{
+  position:relative;
+  width: 280px;
+  font-size: 14px;
+  color: rgb(85, 83, 83);
+  display: table;
+  padding: 10px;
+}
+#a2{
+  position:relative;
+  width: 80px;
+  font-size: 14px;
+  color: rgb(85, 83, 83);
+  display: table;
+  padding: 10px;
+}
+nav .fas{
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+.nav-item{
+  position :relative;
+  top: 12px;
+  margin-left: 10px;
+  overflow :hidden;
+}
+a:hover{
+  background: #eee;
+}
+a:hover i{
+  color: #34AF6D;
+  transition: 0.5s;
+}
+.logout{
+  position: absolute;
+  bottom: 0;
+}
+
+.container{
+  display: flex;
+}
+
+/* MAin Section */
+.main{
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  border-left: 3.5px solid #15395a
+}
+.main-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.main-top a{
+  width: fit-content;
+  padding: 10px;
+  border: 4px solid rgb(35, 39, 67);
+  border-radius: 15px;
+  background-color: transparent;
+  
+}
+.main-top i{  
+  margin: 2px 5px;
+  cursor: pointer;
+}
+.main .users{
+  display: flex;
+  width: 100%;
+}
+.users .card{
+  width: 100%;
+  margin: 10px;
+  background: #fff;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid rgb(35, 39, 67);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(137, 7, 7, 0.1);
+}
+.users .card img{
+  width: 70px;
+  height: 70px;
+  border-radius: 10%;
+}
+.users .card h4{
+  text-transform: uppercase;
+}
+.users .card p{
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+.users table{
+  margin:  auto;
+}
+.users .per span{
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(223, 223, 223);
+}
+.users td{
+  font-size: 14px;
+  padding-right: 15px;
+  color: #15395a;
+}
+.users .card button{
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #15395a;
+}
+.users .card button:hover{
+  background: #15395a;
+  color: #fff;
+  transition: 0.5s;
+}
+
+/*Attendance List serction  */
+.attendance{
+  margin-top: 20px;
+  text-transform: capitalize;
+  
+}
+.attendance-list{
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #fff;
+  border: 3px solid rgb(35, 39, 67);
+  border-radius: 15px;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 15px;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+  border: 2px solid rgb(35, 39, 67);
+  border-radius: 15px;
+}
+table thead tr{
+  color: #fff;
+  background: #15395a;
+  text-align: left;
+  font-weight: bold;
+}
+.table th,
+.table td{
+  padding: 12px 15px;
+}
+.table tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+.table tbody tr:nth-of-type(odd){
+  background: #f3f3f3;
+}
+.table tbody tr.active{
+  font-weight: bold;
+  color: #15395a;
+}
+.table tbody tr:last-of-type{
+  border-bottom: 2px solid #15395a;
+}
+.table button{
+  padding: 6px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid  #15395a;
+}
+.table button:hover{
+  background: #15395a;
+  color: #fff;
+  transition: 0.5rem;
+}
+    </style>
+</head>
+
+<body background="{% static 'global_bg.jpeg' %}">
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                  <img src="{% static 'alpha-removebg-preview.png' %}"  style="width: 90px; height: 120px; padding-left: 0px;">
+                </li>
+                <li style="background-color: #b1ebed;">
+                    <a href="#">
+                        <i class="fas fa-solid fa-calendar"></i>
+                        <span class="nav-item">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <buttom><a href="{% url 'leav_frm' %}">
+                    <i class="fas fa-regular fa-arrow-right-from-bracket"></i>
+                    <span class="nav-item">Apply Leave</span>
+                    </a>
+                    </buttom>
+                </li>
+                <li>
+                    
+                    <buttom><a href="{% url 'leav_his' %}">
+                        <i class="fas fa-solid fa-clone"></i>
+                    <span class="nav-item">Leave History</span>
+                    </a>
+                    </buttom>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                <li>
+                </li>
+                    
+                    <buttom><a  href="{% url 'login' %}" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Log out</span>
+                    </a>
+                    </buttom>
+                </li>
+               
+            </ul>
+        </nav>
+
+
+        <section class="main">
+            <h1 align="center">Welcome Back</h1>
+            <div class="main-top">
+                <h3 align="center">{{fn}}</h3>
+                <a href="myacc.html"><i class="fas fa-user-cog"></i></a>
+            </div>
+            <div class="users">
+                <div class="card">
+                    <h4>NAME 1</h4>
+                    <p>Manager</p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="Red"><span>On leave</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+                <div class="card">
+                    <h4>NAME - 2</h4>
+                    <p>Manager</p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="Green"><span>Active</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+                <div class="card">
+                    <h4>NAME - 3</h4>
+                    <p>HOD</p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="red"><span>On leave</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+                <div class="card">
+                    <h4>NAME - 4</h4>
+                    <p>HOD</p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="green"><span>Active</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+            </div>
+            <section class="attendance">
+                <div class="attendance-list">
+                    <h1>Leave Track</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Manager</th>
+                                <th>HOD</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Name 1</td>
+                                <td>Employee</td>
+                                <td>Yes</td>
+                                <td>Not Necessary</td>
+                                <td>Granted</td>
+                                <td><button>View</button></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        </div>
+                    </section>
+                    <section class="attendance">
+                      <div class="attendance-list">
+                          <h1>Leave Application Status</h1>
+                          <table class="table">
+                              <thead>
+                                  <tr>
+                                    <th>Leave_ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Employee code</th>
+                                    <th>Leave Duration</th>
+                                    <th>Leave Type</th>
+                                    <th>Status</th>
+                                    <th>Details</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% block content %}
+                                 {% for stud in Emp_Leave_applic %}
+                                 {% if stud.emp_code == empc %} 
+                                
+                                  <tr>
+                                    <td>{{stud.emp_id}}</td>
+                                    <td>{{stud.first_name}}</td>
+                                    <td>{{stud.last_name}}</td>
+                                    <td>{{stud.emp_code}}</td>
+                                    <td>{{stud.start_date}} --
+                                        {{stud.end_date}}
+                                    </td>
+                                    <td>{{stud.leave_type}}</td>
+                                    <td>{{stud.status}}</td>
+                                      <td><button><a id="a2" href="{% url 'se_leav_frm' %}">View</a></button></td>
+                                  </tr>
+                                  {% endif %}
+                                  {% endfor %}
+                                  {% endblock content %}
+                              </tbody>
+                          </table>
+                      </div>
+                  </section>
+            <br>
+            <div class="main-top">
+                <h3 align="center">Available Leaves Per Month</h3>
+            </div>
+            <div class="users">
+                <div class="card">
+                    <h4>ABC</h4>
+                    <p>Employee</p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><span>3</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+</body>
+</html>

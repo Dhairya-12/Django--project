@@ -1,0 +1,426 @@
+{%load static%}
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    outline:0;
+    border:0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif; 
+  }
+body{
+    /* background: rgb(226, 226, 226); */
+    background-size: cover;
+    background-repeat:no-repeat;
+  }
+/*Attendance List serction  */
+.attendance{
+    margin-top: 20px;
+    text-transform: capitalize;
+    border-left: 3.5px solid #15395a;
+  }
+  .attendance-list{
+    width: 130%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  }
+  .table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 15px;
+    min-width: 100%;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+  }
+  table thead tr{
+    color: #fff;
+    background: #15395a;
+    text-align: left;
+    font-weight: bold;
+  }
+  .table th,
+  .table td{
+    padding: 12px 15px;
+  }
+  .table tbody tr{
+    border-bottom: 1px solid #ddd;
+  }
+  .table tbody tr:nth-of-type(odd){
+    background: #f3f3f3;
+  }
+  .table tbody tr.active{
+    font-weight: bold;
+    color: #15395a;
+  }
+  .table tbody tr:last-of-type{
+    border-bottom: 2px solid #15395a;
+  }
+  .table button{
+    padding: 6px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #15395a;
+  }
+  .table button:hover{
+    background: #15395a;
+    color: #fff;
+    transition: 1s;
+  }
+/* MAin Section */
+.main{
+    position: relative;
+    padding: 20px;
+    width: 100%;
+  }
+  .main-top{
+    display: flex;
+    width: 100%;
+  }
+  .main-top i{
+    position: absolute;
+    right: 0;
+    margin: 10px 30px;
+    color: rgb(110, 109, 109);
+    cursor: pointer;
+  }
+  .main .users{
+    display: flex;
+    width: 100%;
+  }
+  .users .card{
+    width: 25%;
+    margin: 10px;
+    background: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  }
+  .users .card img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+  .users .card h4{
+    text-transform: uppercase;
+  }
+  .users .card p{
+    font-size: 12px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+  .users table{
+    margin:  auto;
+  }
+  .users .per span{
+    padding: 5px;
+    border-radius: 10px;
+    background: rgb(223, 223, 223);
+  }
+  .users td{
+    font-size: 14px;
+    padding-right: 15px;
+  }
+  .users .card button{
+    width: 100%;
+    margin-top: 8px;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #4AD489;
+  }
+  .users .card button:hover{
+    background: #15395a;
+    color: #fff;
+    transition: 1s;
+  }
+  
+  /*Attendance List serction  */
+  .attendance{
+    margin-top: 20px;
+    text-transform: capitalize;
+    padding-left: 15px;
+  }
+  .attendance-list{
+    width: 112%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(35, 39, 67);
+    border-radius: 15px;
+  }
+  .table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 15px;
+    min-width: 100%;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+  }
+  table thead tr{
+    color: #fff;
+    background: #15395a;
+    text-align: left;
+    font-weight: bold;
+  }
+  .table th,
+  .table td{
+    padding: 12px 15px;
+  }
+  .table tbody tr{
+    border-bottom: 1px solid #ddd;
+  }
+  .table tbody tr:nth-of-type(odd){
+    background: #f3f3f3;
+  }
+  .table tbody tr.active{
+    font-weight: bold;
+    color: #15395a;
+  }
+  .table tbody tr:last-of-type{
+    border-bottom: 2px solid #15395a;
+  }
+  .table button{
+    padding: 6px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #15395a;
+  }
+  .table button:hover{
+    background: #15395a;
+    color: #fff;
+    transition: 1s;
+  }
+nav{
+  position:sticky;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  width: 235px;
+  /* width: 280px; */
+  background: #fff;
+  overflow :hidden;
+  background: #c8f4cc;
+  transition: 1s;
+  
+}
+
+.logo{
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+  padding-bottom: 2rem;
+}
+
+.logo img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.logo span{
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+a{
+  position:relative;
+  width: 280px;
+  font-size: 14px;
+  color: rgb(85, 83, 83);
+  display: table;
+  padding: 10px;
+}
+#a2{
+  position:relative;
+  width: 80px;
+  font-size: 14px;
+  color: rgb(85, 83, 83);
+  display: table;
+  padding: 10px;
+}
+nav .fas{
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+.nav-item{
+  position :relative;
+  top: 12px;
+  margin-left: 10px;
+  overflow :hidden;
+}
+a:hover{
+  background: #b1ebed;
+  transition: 1s;
+}
+a:hover i{
+  color: #34AF6D;
+  transition: 1s;
+}
+.logout{
+  position: absolute;
+  bottom: 0;
+}
+
+.container{
+  display: flex;
+}
+.logo{
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+  padding-bottom: 2rem;
+}
+
+.logo img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.logo span{
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+    </style>
+  </head>
+
+  <body background="{% static 'global_bg.jpeg' %}">
+    <div class="container">
+    <nav>
+        
+        <ul>
+            
+            <li>
+              <img src="{% static 'alpha-removebg-preview.png' %}"  style="width: 90px; height: 120px; align-items: center;">
+            </li>
+            <li>
+                <a href="{% url 'dash_emp' %}">
+                    <i class="fas fa-solid fa-calendar"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <buttom><a href="{% url 'leav_frm' %}">
+                <i class="fas fa fa-arrow-right" aria-hidden="true"></i>
+                <span class="nav-item">Apply Leave</span>
+                </a>
+                </buttom>
+            </li>
+            
+            <li style="background-color: #b1ebed;">
+                <buttom><a href="#">
+                    <i class="fas fa-solid fa-clone"></i>
+                <span class="nav-item">Leave History</span>
+                </a>
+                </buttom>
+            </li>
+          
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+                <buttom>
+                    <a href="{% url 'login' %}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </buttom>
+            </li>   
+        </ul>
+    </nav>
+    <section class="attendance">
+        <div class="attendance-list">
+            <h1 align="center">Leave History</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Employee code</th>
+                        <th>Leave Duration</th>
+                        <th>Leave type</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                      {% block content %}
+                      
+                      {% for stud in Emp_Leave_applic %}
+                      {% if stud.emp_code == empc  %} 
+                       <tr>
+                         <td>{{stud.emp_id}}</td>
+                         <td>{{stud.first_name}}</td>
+                         <td>{{stud.last_name}}</td>
+                         <td>{{stud.emp_code}}</td>
+                         <td>{{stud.start_date}} --
+                             {{stud.end_date}}
+                         </td>
+                         <td>{{stud.leave_type}}</td>
+                         <td>{{stud.status}}</td>
+                         <td><button><a id="a2" href="{% url 'se_leav_frm' %}">View</a></button></td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endblock content %}
+                  
+                    
+                </tbody>
+            </table>
+        
+        </div>
+    
+    </section>
+    
+</section>
+</div>
+</body>
+</html>

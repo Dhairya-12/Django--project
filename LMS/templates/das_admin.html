@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    {% comment %} <link rel="stylesheet" href="static/das_admin.css" /> {% endcomment %}
+    <!-- Font Awesome Cdn Link -->
+    <script src="https://kit.fontawesome.com/51a9bb7133.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body{
+        /* background: rgb(226, 226, 226); */
+        background: url("static/img.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      nav{
+        position: sticky;
+        top: 0;
+        bottom: 0;
+        height: 100vh;
+        left: 0;
+        width: 90px;
+        /* width: 280px; */
+        background: #fff;
+        overflow: hidden;
+        transition: 1s;
+      }
+      nav:hover{
+        width: 280px;
+        transition: 1s;
+      }
+      .logo{
+        text-align: center;
+        display: flex;
+        margin: 10px 0 0 10px;
+        padding-bottom: 3rem;
+      }
+      
+      .logo img{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+      .logo span{
+        font-weight: bold;
+        padding-left: 15px;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+      a{
+        position: relative;
+        width: 280px;
+        font-size: 14px;
+        color: rgb(85, 83, 83);
+        display: table;
+        padding: 10px;
+      }
+      nav .fas{
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 20px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .nav-item{
+        position: relative;
+        top: 12px;
+        margin-left: 10px;
+      }
+      a:hover{
+        background: #eee;
+      }
+      a:hover i{
+        color: #15395A;
+        transition: 0.5s;
+      }
+      .logout{
+        position: absolute;
+        bottom: 0;
+      }
+      
+      .container{
+        display: flex;
+      }
+      
+      /* MAin Section */
+      .main{
+        position: relative;
+        padding: 20px;
+        width: 100%;
+        /* background: url("/Manager/image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat; */
+      }
+      .main-top{
+        display: flex;
+        width: 100%;
+      }
+      .main-top i{
+        position: absolute;
+        right: 0;
+        margin: 10px 30px;
+        color: rgb(110, 109, 109);
+        cursor: pointer;
+      }
+      .main .users{
+        display: flex;
+        width: 100%;
+      }
+      .users .card{
+        width: 25%;
+        margin: 10px;
+        background: #fff;
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+      }
+      .users .card img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+      .users .card h4{
+        text-transform: uppercase;
+      }
+      .users .card p{
+        font-size: 12px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+      }
+      .users table{
+        margin:  auto;
+      }
+      .users .per span{
+        padding: 5px;
+        border-radius: 10px;
+        background: rgb(223, 223, 223);
+      }
+      .users td{
+        font-size: 14px;
+        padding-right: 15px;
+      }
+      .users .card button{
+        width: 100%;
+        margin-top: 8px;
+        padding: 7px;
+        cursor: pointer;
+        border-radius: 10px;
+        background: transparent;
+        border: 1px solid #15395A;
+      }
+      .users .card button:hover{
+        background: #15395A;
+        color: #fff;
+        transition: 0.5s;
+      }
+      
+      /*Attendance List serction  */
+      .attendance{
+        margin-top: 20px;
+        text-transform: capitalize;
+      }
+      .attendance-list{
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+      }
+      .table{
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 15px;
+        min-width: 100%;
+        overflow: hidden;
+        border-radius: 5px 5px 0 0;
+      }
+      table thead tr{
+        color: #fff;
+        background: #15395A;
+        text-align: left;
+        font-weight: bold;
+      }
+      .table th,
+      .table td{
+        padding: 12px 15px;
+      }
+      .table tbody tr{
+        border-bottom: 1px solid #ddd;
+      }
+      .table tbody tr:nth-of-type(odd){
+        background: #f3f3f3;
+      }
+      .table tbody tr.active{
+        font-weight: bold;
+        color: #15395A;
+      }
+      .table tbody tr:last-of-type{
+        border-bottom: 2px solid #15395A;
+      }
+      .table button{
+        padding: 6px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        background: transparent;
+        border: 1px solid #15395A;
+      }
+      .table button:hover{
+        background: #15395A;
+        color: #fff;
+        transition: 0.5rem;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" class="logo">
+                        <span class="nav-item">Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-solid fa-house"></i>
+                        <span class="nav-item">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <a href="#">
+                            
+                        <i class="fas fa-solid fa-calendar"></i>
+                        <span class="nav-item">Leaves</span>
+                    
+                            <div class="dropdown-content">
+                                <a href="{% url 'pend_leav' %}">Pending Leaves</a>
+                                <a href="{% url 'appr_leav' %}">Approved Leaves</a>
+                                <a href="{% url 'rej_leav' %}">Rejected Leaves</a>
+                            </div>
+
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-sharp fa-solid fa-people-group"></i>
+                        <span class="nav-item">Managing Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'login' %}" class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <section class="main">
+            <h1> Welcome Back </h1>
+            <div class="main-top">
+                <h1>Department Details</h1>
+                <i ><button class="fas fa-user-cog"><a href="C:/Users/LENOVO/OneDrive/Desktop/Hackethon/Common/myacc.html"></a></button></i>
+            </div>
+            <div class="users">
+                <div class="card">
+                    <h4>NAME 1</h4>
+                    <p></p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="Green" size="3"><span>Active HOD</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+                <div class="card">
+                    <h4>NAME 2</h4>
+                    <p></p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="Green" size="3"><span>Active MANAGER</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+                <div class="card">
+                    <h4>NAME 3</h4>
+                    <p></p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="Green" size="3"><span>Active HOD</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+                <div class="card">
+                    <h4>NAME 4</h4>
+                    <p></p>
+                    <div class="per">
+                        <table>
+                            <tr>
+                                <td><font color="Green" size="3"><span>ACTIVE MANAGER</span></font></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button>Profile</button>
+                </div>
+            </div>
+
+            <section class="attendance">
+                <div class="attendance-list">
+                    <h1>Confirm Application Leave</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Depart</th>
+                                <th>Attandance</th>
+                                <th>Leave Duration</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>ABC 1</td>
+                                <td>Design</td>
+                                <td>75%</td>
+                                <td>1/10/2020 -- 10/10/2020
+                                </td>
+                                <td>Pending</td>
+                                <td><button>View</button></td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>ABC 2</td>
+                                <td>Finance</td>
+                                <td>85%</td>
+                                <td>--------
+                                </td>
+                                <td>Active</td>
+                                <td><button>View</button></td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>ABC 3</td>
+                                <td>Managment</td>
+                                <td>65%</td>
+                                <td>20/10/2020 -- 30/10/2020
+                                </td>
+                                <td>Pending</td>
+                                <td><button>View</button></td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>ABC 4</td>
+                                <td>Design</td>
+                                <td>75%</td>
+                                <td>-------
+                                </td>
+                                <td>Rejected</td>
+                                <td><button>View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </div>
+</body>
+</html>
