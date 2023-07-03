@@ -1,262 +1,130 @@
-<html>
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    {% comment %} <link rel="stylesheet" href="static/leaves.css" /> {% endcomment %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Leaves Details</title>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            outline: none;
-            border: none;
-            text-decoration: none;
+        * {
             box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-          }
-        /*Attendance List serction  */
-        .attendance{
-            margin-top: 20px;
-            text-transform: capitalize;
-          }
-          .attendance-list{
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-          }
-          .table{
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 15px;
-            min-width: 100%;
-            overflow: hidden;
-            border-radius: 5px 5px 0 0;
-          }
-          table thead tr{
-            color: #fff;
-            background: #34AF6D;
-            text-align: left;
-            font-weight: bold;
-          }
-          .table th,
-          .table td{
-            padding: 12px 15px;
-          }
-          .table tbody tr{
-            border-bottom: 1px solid #ddd;
-          }
-          .table tbody tr:nth-of-type(odd){
-            background: #f3f3f3;
-          }
-          .table tbody tr.active{
-            font-weight: bold;
-            color: #4AD489;
-          }
-          .table tbody tr:last-of-type{
-            border-bottom: 2px solid #4AD489;
-          }
-          .table button{
-            padding: 6px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            background: transparent;
-            border: 1px solid #4AD489;
-          }
-          .table button:hover{
-            background: #4AD489;
-            color: #fff;
-            transition: 0.5rem;
-          }
-        /* MAin Section */
-        .main{
-            position: relative;
+        }
+        
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        header {
+            background-color: #15395a;
+            color: #ffffff;
             padding: 20px;
-            width: 100%;
-          }
-          .main-top{
-            display: flex;
-            width: 100%;
-          }
-          .main-top i{
-            position: absolute;
-            right: 0;
-            margin: 10px 30px;
-            color: rgb(110, 109, 109);
-            cursor: pointer;
-          }
-          .main .users{
-            display: flex;
-            width: 100%;
-          }
-          .users .card{
-            width: 25%;
-            margin: 10px;
-            background: #fff;
             text-align: center;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-          }
-          .users .card img{
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-          }
-          .users .card h4{
-            text-transform: uppercase;
-          }
-          .users .card p{
-            font-size: 12px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-          }
-          .users table{
-            margin:  auto;
-          }
-          .users .per span{
-            padding: 5px;
-            border-radius: 10px;
-            background: rgb(223, 223, 223);
-          }
-          .users td{
-            font-size: 14px;
-            padding-right: 15px;
-          }
-          .users .card button{
-            width: 100%;
-            margin-top: 8px;
-            padding: 7px;
-            cursor: pointer;
-            border-radius: 10px;
-            background: transparent;
-            border: 1px solid #4AD489;
-          }
-          .users .card button:hover{
-            background: #4AD489;
-            color: #fff;
-            transition: 0.5s;
-          }
-          
-          /*Attendance List serction  */
-          .attendance{
-            margin-top: 20px;
-            text-transform: capitalize;
-          }
-          .attendance-list{
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-          }
-          .table{
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 15px;
-            min-width: 100%;
-            overflow: hidden;
-            border-radius: 5px 5px 0 0;
-          }
-          table thead tr{
-            color: #fff;
-            background: #34AF6D;
-            text-align: left;
-            font-weight: bold;
-          }
-          .table th,
-          .table td{
-            padding: 12px 15px;
-          }
-          .table tbody tr{
-            border-bottom: 1px solid #ddd;
-          }
-          .table tbody tr:nth-of-type(odd){
-            background: #f3f3f3;
-          }
-          .table tbody tr.active{
-            font-weight: bold;
-            color: #4AD489;
-          }
-          .table tbody tr:last-of-type{
-            border-bottom: 2px solid #4AD489;
-          }
-          .table button{
-            padding: 6px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            background: transparent;
-            border: 1px solid #4AD489;
-          }
-          .table button:hover{
-            background: #4AD489;
-            color: #fff;
-            transition: 0.5rem;
-          }
+        }
+        
+        .header {
+            background-color: #4AD489;
+            color: rgb(5, 5, 5);
+            padding: 20px;
+            text-align: center;
+            border: 3px solid rgb(35, 39, 67);
+            border-radius: 15px;
+        }
+        
+        .table {
+            border: 3px solid rgb(35, 39, 67);
+        }
+        
+        .container {
+            max-width: none;
+        }
     </style>
 </head>
 
-<body>
-    <section class="attendance">
-        <div class="attendance-list">
-            <h1>Pending Leaves</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Depart</th>
-                        <th>Attandance</th>
-                        <th>Leave Duration</th>
-                        <th>Status</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Sam David</td>
-                        <td>Design</td>
-                        <td>75%</td>
-                        <td>1/10/2020 -- 10/10/2020
-                        </td>
-                        <td>Approved</td>
-                        <td><button>View</button></td>
-                    </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Sam David</td>
-                        <td>Finance</td>
-                        <td>85%</td>
-                        <td>--------
-                        </td>
-                        <td>Approved</td>
-                        <td><button>View</button></td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Sam David</td>
-                        <td>Managment</td>
-                        <td>65%</td>
-                        <td>20/10/2020 -- 30/10/2020
-                        </td>
-                        <td>Approved</td>
-                        <td><button>View</button></td>
-                    </tr>
-                    <tr>
-                        <td>04</td>
-                        <td>Packaging</td>
-                        <td>Design</td>
-                        <td>75%</td>
-                        <td>-------
-                        </td>
-                        <td>Approved</td>
-                        <td><button>View</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-</section>
+<body background="{% static 'global_bg.jpeg' %}">
+
+    <div class="container">
+        <header>
+            <h1>Pending Leave Details</h1>
+        </header>
+        <br>
+        <form action="#">
+            <center>
+                <input type="text" id="nameIn" onkeyup="Name()" placeholder="Search for names.." name="name">
+                <button type="submit">Go</button> &nbsp; &nbsp;
+                <input type="text" id="leaveIn" onkeyup="leaveType()" placeholder="Search for leavetype.." name="leave">
+                <button type="submit">Go</button>
+            </center>
+        </form>
+        <br/>
+        <table class="table table-striped" id="leaveTable">
+            <thead>
+                <tr class="header">
+                    <th>Name</th>
+                    <th>Leave Type</th>
+                    <th>Leave Duration</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+                {% block content %} {% for stud in Man_Leave_applic %}
+                {% if stud.status == 'Pending' %}
+                <tr>
+                    <td>{{stud.first_name}} {{stud.last_name}}</td>
+                    <td>{{stud.leave_type}}</td>
+                    <td>{{stud.start_date}} -- {{stud.end_date}}</td>
+                    <td>{{stud.m_email}}</td>
+                    <td>{{stud.status}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %} {% endblock content %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function Name() {
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("nameIn");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("leaveTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function leaveType() {
+            let input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("leaveIn");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("leaveTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
 </body>
+
 </html>

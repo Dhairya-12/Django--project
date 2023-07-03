@@ -3,6 +3,7 @@ from msilib.schema import Error
 from django.shortcuts import render,HttpResponse
 import pymysql as mysql
 from employee.models import Emp_Leave_app
+from manager.models import Man_Leave_app
 # Create your views here.
 fn=""
 ln=""
@@ -21,8 +22,9 @@ etd=""
 stat="Pending"
 eid=0
 
+
 def login(request):
-    global em,pwd,r,rol,pas,empc,fn
+    global em,pwd,r,rol,pas,empc,fn,ema
     if request.method=="POST":
             try:
                 con=mysql.connect(host="localhost",user="root",passwd="",database="lms") 
@@ -43,7 +45,7 @@ def login(request):
                 empc=result[2]
                 fn=result[3]
                 empc=int(empc)
-                # print(result)
+                print(result)
             except :
                 return HttpResponse("err")
             if(r==rol and pwd==pas):
@@ -52,9 +54,10 @@ def login(request):
                     return render(request,'das_emp.html', {'Emp_Leave_applic':Emp_Leave_applic,'empc':empc,'fn':fn})
                 elif(rol=='Manager'):
                     Emp_Leave_applic = Emp_Leave_app.objects.all()
-                    return render(request,'das_manager.html',{'Emp_Leave_applic':Emp_Leave_applic})
+                    return render(request,'das_manager.html',{'Emp_Leave_applic':Emp_Leave_applic,'empc':empc,'fn':fn})
                 elif(rol=='Admin'):
-                    return render(request,'das_admin.html')
+                    Man_Leave_applic = Man_Leave_app.objects.all()
+                    return render(request,'das_admin.html',{'Man_Leave_applic':Man_Leave_applic,'empc':empc,'fn':fn})
             else:
                 print("error occured")
     return render(request,'login.html')
@@ -84,7 +87,8 @@ def signup(request):
                     pwd=value
             q="insert into signup_details values('{}','{}','{}','{}','{}','{}','{}','{}')".format(fn,ln,mob,empc,depn,r,em,pwd) 
             Cursor.execute(q)
-            con.commit() 
+            con.commit()
+             
     return render(request,'signup.html',)
 
 
@@ -139,3 +143,21 @@ def se_leav_frm(request):
     # # print(result)
     Emp_Leave_applic = Emp_Leave_app.objects.all()
     return render(request,'semp_leaves_frm.html',{'Emp_Leave_applic':Emp_Leave_applic})
+
+def emp_profile(request):
+    # global fn,ln,r,mob,em,depn,empc,pas
+    con=mysql.connect(host="localhost",user="root",passwd="",database="lms") 
+    Cursor=con.cursor()
+    q="select * from signup_details"
+    Cursor.execute(q)
+    result=Cursor.fetchall()[1]
+    fn=result[0]
+    ln=result[1]
+    mob=result[2]
+    empc=result[3]
+    depn=result[4]
+    r=result[5]
+    em=result[6]
+    pas=result[7]
+    print(result)
+    return render(request,'emp_profile.html',{'fn':fn,'ln':ln,'mob':mob,'empc':empc,'r':r,'em':em,'depn':depn,'pas':pas}) 

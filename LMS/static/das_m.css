@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    }
+    body{
+    /* background: rgb(226, 226, 226); */
+    background-size: cover;
+    background-repeat:no-repeat;
+    }
+    nav{
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    width: 90px;
+    /* width: 280px; */
+    background: #fff;
+    overflow :hidden;
+    transition: 1s;
+    background: #c8f4cc;
+    }
+    nav:hover{
+    width: 280px;
+    transition: 1s;
+    }
+    .logo{
+    text-align: center;
+    display: flex;
+    margin: 10px 0 0 10px;
+    padding-bottom: 2rem;
+    }
+
+    .logo img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    }
+    .logo span{
+    font-weight: bold;
+    padding-left: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    }
+    a{
+    position:relative;
+    width: 280px;
+    font-size: 14px;
+    color: rgb(85, 83, 83);
+    display: table;
+    padding: 10px;
+    }
+    button{
+        position:relative;
+        width: 10px;
+        font-size: 14px;
+        color: rgb(85, 83, 83);
+        display: inline-block;
+        padding: 10px;
+    }
+    nav .fas{
+    position: relative;
+    width: 70px;
+    height: 40px;
+    top: 15px;
+    font-size: 20px;
+    text-align: center;
+    }
+    #ab{
+      position: relative;
+      width: 70px;
+      height: 40px;
+      top: 6px;
+      font-size: 20px;
+      text-align: center;
+      }
+    .nav-item{
+    position :relative;
+    top: 12px;
+    margin-left: 10px;
+    overflow :hidden;
+    }
+    .dropdown-content{
+        display :inline-flexbox;
+        transition: 1s;
+        padding-left: 10px;
+    }
+    a:hover{
+        background: #b1ebed;
+        
+    }
+    a:hover i{
+    color: #34AF6D;
+    transition: 1s;
+
+    }
+    a:hover + .dropdown-content{
+        display :inline-flex;
+        transition: 1s;    
+    }
+    .logout{
+    position: absolute;
+    bottom: 0;
+    }
+
+    .container{
+    display: flex;
+    }
+
+    /* MAin Section */
+    .main{
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    border-left: 3.5px solid #15395a
+    }
+    .main-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    }
+    .main-top a{
+    width: fit-content;
+    padding: 10px;
+    border: 4px solid rgb(35, 39, 67);
+    border-radius: 15px;
+    background-color: transparent;
+    
+    }
+    .main-top i{  
+    margin: 2px 5px;
+    cursor: pointer;
+    }
+    .main .users{
+    display: flex;
+    width: 100%;
+    }
+    .users .card{
+    width: 100%;
+    margin: 10px;
+    background: #fff;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid rgb(35, 39, 67);
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 20px 35px rgba(137, 7, 7, 0.1);
+    }
+    .users .card img{
+    width: 70px;
+    height: 70px;
+    border-radius: 10%;
+    }
+    .users .card h4{
+    text-transform: uppercase;
+    }
+    .users .card p{
+    font-size: 12px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    }
+    .users table{
+    margin:  auto;
+    }
+    .users .per span{
+    padding: 5px;
+    border-radius: 10px;
+    background: rgb(223, 223, 223);
+    }
+    .users td{
+    font-size: 14px;
+    padding-right: 15px;
+    color: #15395a;
+    }
+    .users .card button{
+    width: 100%;
+    margin-top: 8px;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid #15395a;
+    }
+    .users .card button:hover{
+    background: #15395a;
+    background: #b1ebed;
+    transition: 0.5s;
+    }
+
+    /*Attendance List serction  */
+    .attendance{
+    margin-top: 20px;
+    text-transform: capitalize;
+    
+    }
+    .attendance-list{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fff;
+    border: 3px solid rgb(35, 39, 67);
+    border-radius: 15px;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    }
+    .table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 15px;
+    min-width: 100%;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+    border: 2px solid rgb(35, 39, 67);
+    border-radius: 15px;
+    }
+    table thead tr{
+    color: #fff;
+    background: #15395a;
+    text-align: left;
+    font-weight: bold;
+    }
+    .table th,
+    .table td{
+    padding: 12px 15px;
+    }
+    .table tbody tr{
+    border-bottom: 1px solid #ddd;
+    }
+    .table tbody tr:nth-of-type(odd){
+    background: #f3f3f3;
+    }
+    .table tbody tr.active{
+    font-weight: bold;
+    color: #15395a;
+    }
+    .table tbody tr:last-of-type{
+    border-bottom: 2px solid #15395a;
+    }
+    .table button{
+    padding: 6px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid  #15395a;
+    }
+    .table button:hover{
+    background: #15395a;
+    color: #fff;
+    transition: 0.5rem;
+    }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+    display: block;
+    padding-top : 0px;
+    }

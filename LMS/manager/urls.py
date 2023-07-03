@@ -9,5 +9,7 @@ urlpatterns = [
     path('leaves_mhis/',leav_mhis,name="leav_mhis"),
     path('emp_details/',emp_dts,name="emp_dts"),
     path('emp_leav_details/',emp_leav_dts,name="emp_leav_dts"),
+    path('sman_leaves_frm/',sm_leav_frm,name="sm_leav_frm"),
     path('cfrm_emp_leav/<int:empId>',cfrm_emp_leav,name="cfrm_emp_leav"),
+    path('man_profile/',views.man_profile,name="man_profile"),
 ]

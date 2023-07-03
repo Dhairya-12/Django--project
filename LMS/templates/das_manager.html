@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title></title>
+  <title>Manager Dashboard</title>
   
   <!-- Font Awesome Cdn Link -->
   <script src="https://kit.fontawesome.com/51a9bb7133.js" crossorigin="anonymous"></script>
@@ -361,18 +361,19 @@
 
 
     <section class="main">
+      <h1 align="center">Welcome Back</h1>
       <div class="main-top">
-        <h1>Manager</h1>
-        <a href="myacc.html"><i class="fas fa-user-cog"></i></a>
-      </div>
+        <h3 align="center">Manager {{fn}}</h3>
+        <a href="{% url 'man_profile' %}"><i class="fas fa-user-cog"></i></a>
+    </div>
       <div class="users">
         <div class="card">
-          <h4>Name 1</h4>
-          <p>HOD</p>
+          <h4>Govind</h4>
+          <p>HR</p>
           <div class="per">
             <table>
               <tr>
-                <td><span><font color="Green">ACTIVE HOD</font></span></td>
+                <td><span><font color="Green">ACTIVE HR</font></span></td>
               </tr>
             </table>
           </div>
@@ -382,8 +383,8 @@
           <button>Profile</button>
         </div>
         <div class="card">
-          <h4>Name 1</h4>
-          <p>HOD</p>
+          <h4>Daksh</h4>
+          <p>HR</p>
           <div class="per">
             <table>
               <tr>
@@ -397,8 +398,8 @@
           <button>Profile</button>
         </div>
         <div class="card">
-          <h4>Name 1</h4>
-          <p>HOD</p>
+          <h4>Pujan</h4>
+          <p>HR</p>
           <div class="per">
             <table>
               <tr>
@@ -412,12 +413,12 @@
         <button>Profile</button>
       </div>
       <div class="card">
-        <h4>Name 1</h4>
-        <p>HOD</p>
+        <h4>Dhyey</h4>
+        <p>HR</p>
         <div class="per">
           <table>
             <tr>
-              <td><span><font color="Green">ACTIVE HOD</font></span></td>
+              <td><span><font color="Green">ACTIVE HR</font></span></td>
             </tr>
           </table>
         </div>
@@ -456,7 +457,10 @@
                     {{stud.end_date}}
                 </td>
                 <td>{{stud.status}}</td>
-                <td><button><a id="a2" href="{% url 'cfrm_emp_leav' empId=stud.emp_id   %}" onclick="openleaveform(stud)">View</a></button></td>
+                <td>
+                  <button><a id="a2" href="{% url 'cfrm_emp_leav' empId=stud.emp_id   %}" onclick="openleaveform(stud)">View</a></button>
+                  {% comment %} <button><a id="a2" href="{% url 'cfrm_emp_leav' empId=stud.emp_id   %}" onclick="openleaveform(stud)">HR</a></button> {% endcomment %}
+                </td>
               </tr>
                 {% endfor %}
                 {% endblock content %}

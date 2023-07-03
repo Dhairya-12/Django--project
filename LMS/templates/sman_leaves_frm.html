@@ -83,7 +83,6 @@
         border: 1px solid black;
       }
     </style>
-    
   </head>
 
   <body>
@@ -101,18 +100,17 @@
         <form id="LeaveRequestForm" method="POST">
           <!-- Name -->
           <form action="/cgi-bin/hello_get.cgi" method="POST">
-            {%csrf_token%}
+            {% block content %}
+              {% for stud in Man_Leave_applic %}
+                 {% comment %} {% if stud.emp_id == 1 %}  {% endcomment %}
             <div class="row mb-3">
-              <label class="form-label"> Employee Name <span>*</span></label>
+              <label class="form-label"> Manager Name <span>*</span></label>
               <div class="col">
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="First Name"
-                  name="first_name"
-                  id="FirstName"
-                  required
-                  data-validation-required-message="Please fill out the field"
+                  name="mfirst_name"
+                  value={{stud.first_name}}
                 />
               </div>
 
@@ -120,28 +118,22 @@
                 <input
                   type="text"
                   class="form-control"
-                  name="last_name"
-                  placeholder="Last Name"
-                  id="LastName"
-                  required
-                  data-validation-required-message="Please fill out the field"
-                />
+                  name="mlast_name"
+                  value={{stud.last_name}}
+                  />
               </div>
             </div>
-            <!--  Employee ID Remaining vacation days-->
+            <!--  Manager ID Remaining vacation days-->
 
             <div class="row mb-3">
               <div class="col">
-                <label class="form-label">Employee code<span>*</span></label>
+                <label class="form-label">Manager code<span>*</span></label>
                 <input
                   type="text"
                   class="form-control"
-                  name="emp_code"
-                  id="Manager email-id"
-                  placeholder="Your Manager ID"
-                  required
-                  data-validation-required-message="Please fill out the field"
-                />
+                  name="memp_code"
+                  value={{stud.emp_code}}
+                  />
               </div>
               <div class="col">
                 <label class="form-label"
@@ -150,39 +142,31 @@
                 <input
                   type="number"
                   class="form-control"
-                  id=""
-                  placeholder="Number of days"
-                  name="no_of_days"
-                  required
-                  data-validation-required-message="Please fill out the field"
-                />
+                  value={{stud.no_of_days}}
+                  name="mno_of_days"
+                  />
               </div>
             </div>
             <div class="row mb-3">
               <div class="col">
                 <label class="form-label"
-                  >Employee Email-id<span>*</span></label
+                  >Manager Email-id<span>*</span></label
                 >
                 <input
                   type="email"
                   class="form-control"
-                  id=" email-id"
-                  name="email"
-                  placeholder="Employee's email"
-                  required
-                  data-validation-required-message="Please fill out the field"
-                />
+                  name="memail"
+                  value={{stud.m_email}}
+                  />
               </div>
               <div class="col">
-                <label class="form-label">Manager Email-id<span>*</span> </label
+                <label class="form-label">HR Email-id<span>*</span> </label
                 ><input
                   type="email"
                   class="form-control"
-                  name="m_email"
-                  placeholder="Admin's email"
-                  required
-                  data-validation-required-message="Please fill out the field"
-                />
+                  name="hr_email"
+                  value={{stud.hr_email}}
+                  />
               </div>
             </div>
 
@@ -195,11 +179,9 @@
                 ><input
                   type="date"
                   class="form-control"
-                  name="start_date"
+                  name="mstart_date"
+                  value={{stud.start_date}}
                   id="StartDate"
-                  {% comment %} value="dd-mm-yyyy"
-                  min="09-03-2023"
-                  max="09-06-2023" {% endcomment %}
                 />
               </div>
               <div class="col">
@@ -209,13 +191,10 @@
                 ><input
                   type="date"
                   class="form-control"
-                  name="end_date"
+                  name="mend_date"
+                  value={{stud.end_date}}
                   id="EndDate"
-                  {% comment %} value="dd-mm-yyyy"
-                  min="09-03-2023"
-                  max="09-06-2023" {% endcomment %}
                 />
-
               </div>
             </div>
             <br />
@@ -223,18 +202,19 @@
               <div class="col">
                 <label for="Leave">Leave Type: </label>
 
-                <select name="leave_type" id="">
-                  <option value="">Select leave type</option>
-                  <option value="medical leave">medical leave</option>
-                  <option value="casual leave">casual leave</option>
-                  <option value="maternity leave">maternity leave</option>
-                  {% comment %} <option value="maternity leave">Bereavement Leave</option>
-                  <option value="maternity leave">Earned Leave</option>
-                  <option value="maternity leave">Marriage Leave</option> {% endcomment %}
-                </select>
+                <input
+                type="text" value={{stud.leave_type}}/>
               </div>
             </div>
-
+            <br />
+            <div class="row mb-3">
+                <div class="col">
+                  <label for="Status"> &nbsp;&nbsp;&nbsp; Status:</label>
+                  &nbsp;&nbsp;&nbsp;
+                  <input
+                  type="text" value={{stud.status}}>
+                </div>
+              </div>
             <br />
             <div class="row mb-3">
               <div class="col">
@@ -243,48 +223,19 @@
                 <textarea
                   rows="5"
                   cols="60"
-                  name="remrk"
-                  required
-                  data-validation-required-message="Please fill out the field"
-                >
+                  name="m_remrk"
+                >{{stud.remrk}}
                 </textarea>
               </div>
             </div>
             <br />
-
-            <button type="submit" class="btn btn-primary w-100 shadow-sm">
-              Submit
-            </button>
+            {% comment %} {% endif %} {% endcomment %}
+            {% endfor %}
+            {% endblock content %}
+            
           </form>
         </form>
       </section>
     </div>
-    {% comment %} <script>
-      var today_s = new Date();
-      var today_e = new Date();
-      var dd = today_s.getDate();
-      var mm_s = today_s.getMonth() + 1;//January is 0!
-      var mm_e = today_e.getMonth() + 4; 
-      var yyyy = today_s.getFullYear();
-
-      if (dd < 10) {
-        dd = '0' + dd;
-      }
-
-      if (mm_s < 10) {
-        mm_s = '0' + mm_s;
-      } 
-
-      if (mm_e < 10) {
-        mm_e = '0' + mm_e;
-      } 
-            
-      today_s = dd + '-' + mm_s + '-' + yyyy;
-      today_e = dd + '-' + mm_e + '-' + yyyy;
-      document.getElementById("EndDate").setAttribute("min", today_s);
-      document.getElementById("EndDate").setAttribute("max", today_e);
-      document.getElementById("StartDate").setAttribute("min", today_s);
-      document.getElementById("StartDate").setAttribute("max", today_e);
-    </script>  {% endcomment %}
   </body>
 </html>
